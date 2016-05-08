@@ -1,10 +1,10 @@
 
-var rowP1 = '<div class="nBlc">', rowP2 = '</div>', m1, m2, sM, r, c;
+var rowP1 = '<div class="nBlc">', rowP2 = '</div>', m1, m2, sM, r, c, randC = 30;
 function Create2DArray(rows) {
   var arr = [];
 
   for (var i=0;i<rows;i++) {
-     arr[i] = [];
+     arr.push(new Array());
   }
 
   return arr;
@@ -12,12 +12,14 @@ function Create2DArray(rows) {
 function onL(){
     m1 = Create2DArray(3);
     m2 = Create2DArray(3);
+    sM = Create2DArray(20);
 }
 function captureForm(){
     c = parseInt(document.forms["rCF"]["c"].value);
     r = parseInt(document.forms["rCF"]["r"].value);
     m1 = Create2DArray(r);
     m2 = Create2DArray(c);
+    sM = Create2DArray(r);
     if (c == null || c == "" || r == null || r == "") {
         alert("a field is missing");
         return false;
@@ -33,7 +35,7 @@ function captureForm(){
         for(var i = 0; i < parseInt(r); i++){
             rowT = '';
             for(var p = 0; p < parseInt(c); p++){
-                var tR = Math.floor(Math.random()*40);
+                var tR = Math.floor(Math.random()*randC);
                 rowT += rowP1 + tR + rowP2;
                 m1[i][p] = tR;
             } rowT = '<div class="tR">' + rowT + '</div>';
@@ -44,9 +46,9 @@ function captureForm(){
         for(var i = 0; i < c; i++){
             rowT = '';
             for(var p = 0; p < r; p++){
-                var tR = Math.floor(Math.random()*40);
+                var tR = Math.floor(Math.random()*randC);
                 rowT += rowP1 + tR + rowP2;
-                m1[i][p] = tR;
+                m2[i][p] = tR;
             } rowT = '<div class="tR">' + rowT + '</div>';
             rowColT += rowT;
         }document.getElementById('tM').innerHTML = rowColT;
@@ -68,9 +70,18 @@ function captureForm(){
 }
 function mM(){
     //multiply m1 by m2
-    for(int x = 0; x < c; x++){
-        for(int y = 0; y < r; y++){
-            
+    for(var x = 0; x < c; x++){
+        for(var y = 0; y < r; y++){
+            for(var p = 0; p < r; p++){
+                console.log(m1[p][x]);console.log(m2[y][p]);
+                var m1n = m1[p][x], m2n = m2[y][p];
+                var product = m1n * m2n;
+                if(Number.isNaN(sM[x][y]))
+                    sM[x][y] = product;
+                else
+                    sM[x][y] = sM[x][y] + product;
+                console.log(sM[x][y]);
+            }
         }
     }
 }
