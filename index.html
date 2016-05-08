@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ez-Matrix</title>
+    <!-- External librarys-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="math.min.js" type="text/javascript"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+    <body onload="onL()">
+        <form id="f" name="rCF" onsubmit="return captureForm()">
+            <div class="dT">columns(max of 10):</div>
+            <input name="c" class="cI" value="3">
+            <div class="dT">rows(max of 5):</div>
+            <input name="r" class="rI" value="3">
+            <button type="submit">set</button>
+        </form>
+        <div class="row">
+            <div id="sM" class="block">
+            </div>
+            *
+            <div id="tM" class="block">
+
+            </div>
+            =
+            <div id="aM" class="block">
+
+            </div>
+        </div>
+        <div class="row">
+        </div>
+        <script>
+            $("#f").submit(function(e) {
+                e.preventDefault();
+            });
+        </script>
+    </body>
+</html>
